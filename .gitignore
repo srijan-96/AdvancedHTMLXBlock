@@ -1,0 +1,12 @@
+.idea
+.env
+*.iml
+.classpath
+.project
+.settings
+.DS_Store
+*.pyc
+./advancedhtml_xblock.egg-info
+
+# vim
+*.swp
