@@ -1,0 +1,9 @@
+/* CSS for AdvancedHTMLXBlock */
+
+.advancedhtml_block .count {
+    font-weight: bold;
+}
+
+.advancedhtml_block p {
+    cursor: pointer;
+}
