@@ -6,7 +6,8 @@
 .settings
 .DS_Store
 *.pyc
-./advancedhtml_xblock.egg-info
+./advancedhtml_xblock.egg-info/
+.vscode/
 
 # vim
 *.swp
