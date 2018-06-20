@@ -5,16 +5,15 @@ from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
 
-defaultHTMLString = """
-                    <!DOCTYPE html>
-                    <html>
-                        <head>
-                        </head>
-                        <body>
-                            <p>This is an Advanced HTML Component</p>
-                        </body>
-                    </html>
-                    """
+defaultHTMLString = """<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <p>This is an Advanced HTML Component</p>
+    </body>
+</html>
+"""
 class AdvancedHTMLXBlock(XBlock):
     """
     TO-DO: document what your XBlock does.
@@ -36,8 +35,6 @@ class AdvancedHTMLXBlock(XBlock):
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
-        print "data = " + "\n"
-        print "--------------------\n"
         return data.decode("utf8")
 
     # TO-DO: change this view to display your data your own way.
@@ -76,7 +73,16 @@ class AdvancedHTMLXBlock(XBlock):
 
         self.count += 1
         return {"count": self.count}
-        
+
+    @XBlock.json_handler
+    def get_html_content(self, data, suffix=''):
+        return {"htmlcontent": self.htmlcontent}
+    
+    @XBlock.json_handler
+    def set_html_content(self, data, suffix=''):
+        self.htmlcontent = data['set_data']
+        return {"htmlcontent": self.htmlcontent}
+    
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
     @staticmethod

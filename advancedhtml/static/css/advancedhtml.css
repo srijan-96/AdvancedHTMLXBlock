@@ -7,7 +7,10 @@
 .advancedhtml_block p {
     cursor: pointer;
 }
-
+#saveEditor {
+    top: 60%;
+    position: absolute;
+}
 #AdVeDiToR {
     width: 50%;
     height: 50%;
@@ -29,6 +32,6 @@
 }
 
 .debug {
-    top: 60%;
+    top: 65%;
     position:absolute;
 }
