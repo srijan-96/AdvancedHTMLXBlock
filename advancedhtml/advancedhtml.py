@@ -23,6 +23,12 @@ class AdvancedHTMLXBlock(XBlock):
     # self.<fieldname>.
 
     # TO-DO: delete count, and define your own fields.
+    display_name = String(
+        default="Advanced HTML Block",
+        help="The display name of the XBlock"
+    )
+    has_score=False
+    icon_class=other
     count = Integer(
         default=0, scope=Scope.user_state,
         help="A simple counter, to show something happening",
@@ -31,6 +37,7 @@ class AdvancedHTMLXBlock(XBlock):
         default=defaultHTMLString, scope=Scope.content,
         help="Source code of HTML courseware"
     )
+    non_editable_metadata_fields=["display_name", "has_score", "icon_class", "htmlcontent"]
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
