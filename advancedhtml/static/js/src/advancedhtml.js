@@ -79,6 +79,13 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             editor.setValue(editorContent);
             editor.session.setUseWorker(true);
             editor.session.setMode("ace/mode/html");
+            editor.session.on('change', function() {
+                var tmpContent = editor.session.getValue();
+                var preview = document.getElementById("AdVhTmLpReViEw");
+                preview.contentWindow.document.open();
+                preview.contentWindow.document.write(tmpContent);
+                preview.contentWindow.document.close();
+            })
         });
     });
 }
