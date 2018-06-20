@@ -7,3 +7,28 @@
 .advancedhtml_block p {
     cursor: pointer;
 }
+
+#AdVeDiToR {
+    width: 50%;
+    height: 50%;
+    left: 0px;
+    right: 0px;
+    top: 50px;
+    bottom: 0px;
+    position: absolute;
+}
+
+#AdVhTmLpReViEw {
+    width: 50%;
+    height: 50%;
+    left: 50%;
+    right: 0px;
+    top: 50px;
+    bottom: 0px;
+    position: absolute;
+}
+
+.debug {
+    top: 60%;
+    position:absolute;
+}

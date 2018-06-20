@@ -36,19 +36,32 @@ class AdvancedHTMLXBlock(XBlock):
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
+        print "data = " + "\n"
+        print "--------------------\n"
         return data.decode("utf8")
 
     # TO-DO: change this view to display your data your own way.
+    #def student_view(self, context=None):
+    #    """
+    #    The primary view of the AdvancedHTMLXBlock, shown to students
+    #    when viewing courses.
+    #    """
+    #    html = self.resource_string("static/html/advancedhtml.html")
+    #    frag = Fragment(html.format(self=self))
+    #    frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+    #    frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
+    #    frag.initialize_js('AdvancedHTMLXBlock')
+    #    return frag
+
     def student_view(self, context=None):
         """
-        The primary view of the AdvancedHTMLXBlock, shown to students
-        when viewing courses.
+        The view that opens on clicking edit button in studio
         """
-        html = self.resource_string("static/html/advancedhtml.html")
+        html = self.resource_string("static/html/advancedhtml_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/advancedhtml.css"))
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
-        frag.initialize_js('AdvancedHTMLXBlock')
+        frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
@@ -63,7 +76,7 @@ class AdvancedHTMLXBlock(XBlock):
 
         self.count += 1
         return {"count": self.count}
-
+        
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
     @staticmethod
