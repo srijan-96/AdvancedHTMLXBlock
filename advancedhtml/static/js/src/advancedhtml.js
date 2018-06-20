@@ -15,24 +15,38 @@ var editorContent = String.raw`<!DOCTYPE html>
     </body>
 </html>`;
 function AdvancedHTMLXBlock(runtime, element) {
-
-    function updateCount(result) {
-        $('.count', element).text(result.count);
+    var getContentHandlerUrl = runtime.handlerUrl(element, 'get_html_content');
+    function updateIframeAfterSuccess(result) {
+        var htmlcontent = result.htmlcontent;
+        console.log(htmlcontent);
+        var preview = document.getElementById("unique-id-iframe");
+        preview.contentWindow.document.open();
+        preview.contentWindow.document.write(htmlcontent);
+        preview.contentWindow.document.close();
     }
-
-    var handlerUrl = runtime.handlerUrl(element, 'increment_count');
-
-    $('p', element).click(function(eventObject) {
-        $.ajax({
-            type: "POST",
-            url: handlerUrl,
-            data: JSON.stringify({"hello": "world"}),
-            success: updateCount
+    function addBlankTargetForAnchorTags(adv_iframe) {
+        var anchorTags = adv_iframe.contentDocument.getElementsByTagName("A");
+        for(var i = 0; i < anchorTags.length; i++) {
+            var aTag = anchorTags[i];
+            aTag.target = '_blank';
+        }
+    }
+    window.addEventListener('DOMContentLoaded', function dostuff(e) {
+        var adv_iframe = document.getElementById("unique-id-iframe");
+        adv_iframe.addEventListener("load", function(e) {
+            adv_iframe.height = adv_iframe.contentWindow.document.body.scrollHeight;
+            console.log(adv_iframe.height);
+            addBlankTargetForAnchorTags(adv_iframe);
         });
     });
-
     $(function ($) {
         /* Here's where you'd do things on page load. */
+        $.ajax({
+            type: "POST",
+            url: getContentHandlerUrl,
+            data: JSON.stringify({"need_data": "true"}),
+            success: updateIframeAfterSuccess
+        });
     });
 }
 

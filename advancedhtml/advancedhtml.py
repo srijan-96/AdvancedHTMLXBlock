@@ -38,19 +38,20 @@ class AdvancedHTMLXBlock(XBlock):
         return data.decode("utf8")
 
     # TO-DO: change this view to display your data your own way.
-    #def student_view(self, context=None):
-    #    """
-    #    The primary view of the AdvancedHTMLXBlock, shown to students
-    #    when viewing courses.
-    #    """
-    #    html = self.resource_string("static/html/advancedhtml.html")
-    #    frag = Fragment(html.format(self=self))
-    #    frag.add_css(self.resource_string("static/css/advancedhtml.css"))
-    #    frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
-    #    frag.initialize_js('AdvancedHTMLXBlock')
-    #    return frag
-
     def student_view(self, context=None):
+        """
+        The primary view of the AdvancedHTMLXBlock, shown to students
+        when viewing courses.
+        """
+        html = self.resource_string("static/html/advancedhtml.html")
+        #frag = Fragment(html.format(self=self))
+        frag = Fragment(html)
+        frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+        frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
+        frag.initialize_js('AdvancedHTMLXBlock')
+        return frag
+
+    def studio_view(self, context=None):
         """
         The view that opens on clicking edit button in studio
         """
@@ -76,6 +77,7 @@ class AdvancedHTMLXBlock(XBlock):
 
     @XBlock.json_handler
     def get_html_content(self, data, suffix=''):
+        assert data['need_data'] == 'true'
         return {"htmlcontent": self.htmlcontent}
     
     @XBlock.json_handler
