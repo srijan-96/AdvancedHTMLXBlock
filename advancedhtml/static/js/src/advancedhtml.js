@@ -23,6 +23,11 @@ function AdvancedHTMLXBlock(runtime, element) {
         preview.contentWindow.document.open();
         preview.contentWindow.document.write(htmlcontent);
         preview.contentWindow.document.close();
+        preview.addEventListener("load", function(e) {
+            preview.height = preview.contentWindow.document.body.scrollHeight;
+            console.log(preview.height);
+            addBlankTargetForAnchorTags(preview);
+        });
     }
     function addBlankTargetForAnchorTags(adv_iframe) {
         var anchorTags = adv_iframe.contentDocument.getElementsByTagName("A");
@@ -31,6 +36,7 @@ function AdvancedHTMLXBlock(runtime, element) {
             aTag.target = '_blank';
         }
     }
+    /*
     window.addEventListener('DOMContentLoaded', function dostuff(e) {
         var adv_iframe = document.getElementById("unique-id-iframe");
         adv_iframe.addEventListener("load", function(e) {
@@ -39,6 +45,7 @@ function AdvancedHTMLXBlock(runtime, element) {
             addBlankTargetForAnchorTags(adv_iframe);
         });
     });
+    */
     $(function ($) {
         /* Here's where you'd do things on page load. */
         $.ajax({
