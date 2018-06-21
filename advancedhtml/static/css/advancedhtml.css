@@ -11,12 +11,12 @@
     top: 60%;
     position: absolute;
 }
-#AdVeDiToR {
-    width: 50%;
-    height: 50%;
-    left: 0px;
+#advancedhtml_editor {
+    width: 50% ;
+    height: 50% ;
+    left: 0px ;
     right: 0px;
-    top: 50px;
+    top: 50px ;
     bottom: 0px;
     position: absolute;
 }
