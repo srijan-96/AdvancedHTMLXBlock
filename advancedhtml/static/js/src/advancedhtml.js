@@ -11,7 +11,11 @@ function AdvancedHTMLXBlock(runtime, element) {
         preview.contentWindow.document.write(htmlcontent);
         preview.contentWindow.document.close();
         preview.onload = function(e) {
-            preview.height = preview.contentWindow.document.body.scrollHeight + 20;
+            /*
+             * Make sure that your <body> + <<html> margin fits within the given margin of 35px
+             * It is recommended that you have your <body> and <html> margin is zero
+             */
+            preview.height = preview.contentWindow.document.body.scrollHeight + 35;
             console.log("This is new function " + preview.height);
             addBlankTargetForAnchorTags(preview);
         };
