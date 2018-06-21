@@ -1,4 +1,5 @@
 /* Javascript for AdvancedHTMLXBlock. */
+"use strict";
 var editor;
 var editorContent = String.raw`<!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@ var editorContent = String.raw`<!DOCTYPE html>
     </body>
 </html>`;
 function AdvancedHTMLXBlock(runtime, element) {
+    'use strict';
     var getContentHandlerUrl = runtime.handlerUrl(element, 'get_html_content');
     function updateIframeAfterSuccess(result) {
         var htmlcontent = result.htmlcontent;
@@ -27,7 +29,7 @@ function AdvancedHTMLXBlock(runtime, element) {
             preview.height = preview.contentWindow.document.body.scrollHeight;
             console.log(preview.height);
             addBlankTargetForAnchorTags(preview);
-        });
+        }, true);
     }
     function addBlankTargetForAnchorTags(adv_iframe) {
         var anchorTags = adv_iframe.contentDocument.getElementsByTagName("A");
@@ -36,28 +38,27 @@ function AdvancedHTMLXBlock(runtime, element) {
             aTag.target = '_blank';
         }
     }
-    /*
-    window.addEventListener('DOMContentLoaded', function dostuff(e) {
-        var adv_iframe = document.getElementById("unique-id-iframe");
-        adv_iframe.addEventListener("load", function(e) {
-            adv_iframe.height = adv_iframe.contentWindow.document.body.scrollHeight;
-            console.log(adv_iframe.height);
-            addBlankTargetForAnchorTags(adv_iframe);
-        });
-    });
-    */
     $(function ($) {
         /* Here's where you'd do things on page load. */
+        console.log(element);
+        console.log(runtime);
         $.ajax({
             type: "POST",
             url: getContentHandlerUrl,
             data: JSON.stringify({"need_data": "true"}),
-            success: updateIframeAfterSuccess
+            success: updateIframeAfterSuccess,
+            error: function(data) {
+                var data = $.parseJSON(data);
+                $.each(data.errors, function(index, value){
+                    alert(value);
+                });
+            }
         });
     });
 }
 
 function AdvancedHTMLXBlock_EditorInit(runtime, element) {
+    'use strict';
     function updateEditorAfterAJAX(result) {
         editorContent = result.htmlcontent;
         requirejs(["ace-editor/ace"], function() {

@@ -28,7 +28,7 @@ class AdvancedHTMLXBlock(XBlock):
         help="The display name of the XBlock"
     )
     has_score=False
-    icon_class=other
+    icon_class="other"
     count = Integer(
         default=0, scope=Scope.user_state,
         help="A simple counter, to show something happening",
