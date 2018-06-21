@@ -68,22 +68,28 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         """
         html = self.resource_string("static/html/advancedhtml_edit.html")
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/advancedhtml.css"))
         frag.add_css(self.resource_string("static/css/codemirror.css"))
         frag.add_css(self.resource_string("static/css/foldgutter.css"))
+        frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+        # Load the main CodeMirror first
         frag.add_javascript(self.resource_string("static/js/src/codemirror/codemirror.js"))
-        frag.add_javascript(self.resource_string("static/js/src/codemirror/brace-fold.js"))
+        # Load the CodeMirror addons 
+        # Folder : addons/edit
         frag.add_javascript(self.resource_string("static/js/src/codemirror/closebrackets.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/closetag.js"))
-        frag.add_javascript(self.resource_string("static/js/src/codemirror/comment-fold.js"))
-        frag.add_javascript(self.resource_string("static/js/src/codemirror/css.js"))
+        # Folder : addons/fold
         frag.add_javascript(self.resource_string("static/js/src/codemirror/foldcode.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/foldgutter.js"))
-        frag.add_javascript(self.resource_string("static/js/src/codemirror/htmlmixed.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/brace-fold.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/comment-fold.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/indent-fold.js"))
-        frag.add_javascript(self.resource_string("static/js/src/codemirror/javascript.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/xml-fold.js"))
+        # Load the CodeMirror modes
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/css.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/htmlmixed.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/javascript.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/xml.js"))
+        # Finally load our JavaScript
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml_edit.js"))
 
         frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
