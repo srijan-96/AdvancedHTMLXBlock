@@ -55,7 +55,7 @@ class AdvancedHTMLXBlock(XBlock):
         """
         html = self.resource_string("static/html/advancedhtml.html")
         #frag = Fragment(html.format(self=self))
-        frag = Fragment(html)
+        frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/advancedhtml.css"))
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
         frag.initialize_js('AdvancedHTMLXBlock')
@@ -68,7 +68,7 @@ class AdvancedHTMLXBlock(XBlock):
         html = self.resource_string("static/html/advancedhtml_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/advancedhtml.css"))
-        frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
+        frag.add_javascript(self.resource_string("static/js/src/advancedhtml_edit.js"))
         frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
         return frag
 
