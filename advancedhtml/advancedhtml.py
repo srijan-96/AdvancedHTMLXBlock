@@ -4,6 +4,7 @@ import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
+from xblockutils.publish_event import PublishEventMixin
 
 defaultHTMLString = """<!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@ defaultHTMLString = """<!DOCTYPE html>
     </body>
 </html>
 """
-class AdvancedHTMLXBlock(XBlock):
+class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     """
     TO-DO: document what your XBlock does.
     """
