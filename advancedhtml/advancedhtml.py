@@ -27,6 +27,9 @@ class AdvancedHTMLXBlock(XBlock):
         default="Advanced HTML Block",
         help="The display name of the XBlock"
     )
+    name = String(
+        default="Advanced HTML XBlock"
+    )
     has_score=False
     icon_class="other"
     count = Integer(

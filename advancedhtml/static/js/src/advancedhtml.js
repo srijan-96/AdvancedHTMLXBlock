@@ -25,11 +25,11 @@ function AdvancedHTMLXBlock(runtime, element) {
         preview.contentWindow.document.open();
         preview.contentWindow.document.write(htmlcontent);
         preview.contentWindow.document.close();
-        preview.addEventListener("load", function(e) {
-            preview.height = preview.contentWindow.document.body.scrollHeight;
-            console.log(preview.height);
+        preview.onload = function(e) {
+            preview.height = preview.contentWindow.document.body.scrollHeight + 20;
+            console.log("This is new function " + preview.height);
             addBlankTargetForAnchorTags(preview);
-        }, true);
+        };
     }
     function addBlankTargetForAnchorTags(adv_iframe) {
         var anchorTags = adv_iframe.contentDocument.getElementsByTagName("A");
