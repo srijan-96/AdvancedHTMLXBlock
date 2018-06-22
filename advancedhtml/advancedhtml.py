@@ -71,6 +71,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         frag.add_css(self.resource_string("static/css/codemirror.css"))
         frag.add_css(self.resource_string("static/css/foldgutter.css"))
         frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+        frag.add_css(self.resource_string("static/css/materialize.min.css"))
         # Load the main CodeMirror first
         frag.add_javascript(self.resource_string("static/js/src/codemirror/codemirror.js"))
         # Load the CodeMirror addons 
@@ -89,6 +90,8 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         frag.add_javascript(self.resource_string("static/js/src/codemirror/htmlmixed.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/javascript.js"))
         frag.add_javascript(self.resource_string("static/js/src/codemirror/xml.js"))
+        # Load the materialize js
+        frag.add_javascript(self.resource_string("static/js/src/materialize/materialize.min.js"))
         # Finally load our JavaScript
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml_edit.js"))
 

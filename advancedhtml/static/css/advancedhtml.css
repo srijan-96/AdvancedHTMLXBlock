@@ -7,6 +7,7 @@
 .advancedhtml_block p {
     cursor: pointer;
 }
+/*
 #saveEditor {
     top: 60%;
     position: absolute;
@@ -34,4 +35,48 @@
 .debug {
     top: 65%;
     position:absolute;
+}
+*/
+.CodeMirror {
+    height: 100% !important;
+    width: 100% !important;
+}
+#advancedhtml_edit_wrapper {
+    height: 400px;
+    margin: 5px;
+    padding: 5px;
+    top: 20%; /*Needed for workbench only */
+}
+#advancedhtml_toolbar {
+    margin: 0px;
+    padding: 0px;
+    height: 10%;
+}
+#advancedhtml_workarea {
+    height: 90%;
+    padding: 0px;
+    margin: 0px;
+}
+#advancedhtml_editor {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
+#advancedhtml_preview {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+#AdVeDiToR {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+#AdVhTmLpReViEw {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
