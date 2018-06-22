@@ -41,9 +41,11 @@
     height: 100% !important;
     width: 100% !important;
 }
+#settings-tab {
+    height: 400px;
+}
 #advancedhtml_edit_wrapper {
-    height: 400px !important;
-    height: 100%;
+    height: 350px;
     margin: 5px;
     padding: 5px;
     /* top: 20%; Needed for workbench only */
@@ -57,7 +59,7 @@
     height: 10%;
 }
 #advancedhtml_workarea {
-    height: 90%;
+    height: 80%;
     padding: 0px;
     margin: 0px;
 }
@@ -84,4 +86,7 @@
     height: 100%;
     margin: 0px;
     padding: 0px;
+}
+.xblock-actions {
+    height: 80%;
 }

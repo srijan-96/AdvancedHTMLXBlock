@@ -57,7 +57,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         html = self.resource_string("static/html/advancedhtml.html")
         #frag = Fragment(html.format(self=self))
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+        #frag.add_css(self.resource_string("static/css/advancedhtml.css"))
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
         frag.initialize_js('AdvancedHTMLXBlock')
         return frag
@@ -70,7 +70,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/codemirror.css"))
         frag.add_css(self.resource_string("static/css/foldgutter.css"))
-        frag.add_css(self.resource_string("static/css/bootstrap-grid.min.css"))
+        frag.add_css(self.resource_string("static/css/bootstrap-grid.css"))
         frag.add_css(self.resource_string("static/css/advancedhtml.css"))
         # Load the main CodeMirror first
         frag.add_javascript(self.resource_string("static/js/src/codemirror/codemirror.js"))
