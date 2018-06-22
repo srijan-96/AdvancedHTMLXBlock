@@ -42,10 +42,14 @@
     width: 100% !important;
 }
 #advancedhtml_edit_wrapper {
-    height: 400px;
+    /* height: 400px; */
+    height: 100%;
     margin: 5px;
     padding: 5px;
-    top: 20%; /*Needed for workbench only */
+    /* top: 20%; Needed for workbench only */
+}
+#advancedhtml_liveoption_wrapper {
+    height: 100%;
 }
 #advancedhtml_toolbar {
     margin: 0px;

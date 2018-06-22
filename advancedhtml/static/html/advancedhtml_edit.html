@@ -13,17 +13,28 @@
             </div>
     </div>
 </div-->
-<div id="advancedhtml_edit_wrapper">
+<div id="advancedhtml_edit_wrapper" class="bootstrap-wrapper">
     <div id="advancedhtml_toolbar" class="row">
-        <div class="col s2">
-            <button id="saveEditor" class="waves-effect waves-light btn">Save</button>
+        <div class="col-sm-1">
+            <button id="saveEditor">Save</button>
+        </div>
+        <div class="col-sm-3" id="advancedhtml_liveoption_wrapper">
+            <label>
+                <input type="checkbox" />
+                <span>Live Preview</span>
+            </label>
+        </div>
+        <div class="col-8">
+            <button id="previewButton">Preview</button>
         </div>
     </div>
     <div id="advancedhtml_workarea" class="row">
-        <div class="col s6" id="advancedhtml_editor">
+        <div class="col-6" id="advancedhtml_editor">
+            <p>Editor :</p>
             <textarea id="AdVeDiToR"></textarea>
         </div>
-        <div class="col s6" id="advancedhtml_preview">
+        <div class="col-6" id="advancedhtml_preview">
+            <p>Live Preview :</p>
             <iframe id="AdVhTmLpReViEw" frameborder="0"></iframe>
         </div>
     </div>
