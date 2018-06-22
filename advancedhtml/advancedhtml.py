@@ -1,9 +1,13 @@
 """TO-DO: Write a description of what this XBlock is."""
 
 import pkg_resources
+
+import uuid
+
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
+
 from xblockutils.publish_event import PublishEventMixin
 
 defaultHTMLString = """<!DOCTYPE html>
@@ -33,6 +37,11 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     )
     has_score=False
     icon_class="other"
+    unique_id = String(
+        default="unique-id",
+        help="Unique ID of this xblock",
+        scope=Scope.content
+    )
     count = Integer(
         default=0, scope=Scope.user_state,
         help="A simple counter, to show something happening",
@@ -54,12 +63,13 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         The primary view of the AdvancedHTMLXBlock, shown to students
         when viewing courses.
         """
+        self.unique_id = str(uuid.uuid4())
         html = self.resource_string("static/html/advancedhtml.html")
         #frag = Fragment(html.format(self=self))
         frag = Fragment(html.format(self=self))
         #frag.add_css(self.resource_string("static/css/advancedhtml.css"))
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
-        frag.initialize_js('AdvancedHTMLXBlock')
+        frag.initialize_js('AdvancedHTMLXBlock', {"unique-id" : self.unique_id})
         return frag
 
     def studio_view(self, context=None):

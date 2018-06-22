@@ -1,11 +1,12 @@
 /* Javascript for AdvancedHTMLXBlock. */
 
-function AdvancedHTMLXBlock(runtime, element) {
+function AdvancedHTMLXBlock(runtime, element, data) {
+    console.log(data["unique-id"]);
     var getContentHandlerUrl = runtime.handlerUrl(element, 'get_html_content');
     function updateIframeAfterSuccess(result) {
         var htmlcontent = result.htmlcontent;
         console.log(htmlcontent);
-        var preview = document.getElementById("unique-id-iframe");
+        var preview = document.getElementById(data["unique-id"] + "-iframe");
         preview.contentWindow.document.open();
         preview.contentWindow.document.write(htmlcontent);
         preview.contentWindow.document.close();
