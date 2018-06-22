@@ -42,9 +42,9 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         var data = {
             "set_data" : editorContent
         };
-        $.http(setContentHandlerUrl, JSON.stringify(data).done(function(response) {
+        $.http(setContentHandlerUrl, JSON.stringify(data)).done(function(response) {
             runtime.notify('save', {state: 'end'});
-        }));
+        });
     });
     $(element).find('.cancel-button').bind('click', function() {
         runtime.notify('cancel', {});
