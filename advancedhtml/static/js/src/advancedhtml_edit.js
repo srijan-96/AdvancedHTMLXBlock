@@ -1,7 +1,6 @@
 
 
 function AdvancedHTMLXBlock_EditorInit(runtime, element) {
-    "use strict";
     var editor;
     var editorContent = String.raw`<!DOCTYPE html>
 <html>

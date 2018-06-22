@@ -1,7 +1,6 @@
 /* Javascript for AdvancedHTMLXBlock. */
 
 function AdvancedHTMLXBlock(runtime, element) {
-    'use strict';
     var getContentHandlerUrl = runtime.handlerUrl(element, 'get_html_content');
     function updateIframeAfterSuccess(result) {
         var htmlcontent = result.htmlcontent;

@@ -42,7 +42,7 @@
     width: 100% !important;
 }
 #settings-tab {
-    height: 400px;
+    height: 370px;
 }
 #advancedhtml_edit_wrapper {
     height: 350px;
@@ -59,7 +59,7 @@
     height: 10%;
 }
 #advancedhtml_workarea {
-    height: 80%;
+    height: 85%;
     padding: 0px;
     margin: 0px;
 }
@@ -86,7 +86,4 @@
     height: 100%;
     margin: 0px;
     padding: 0px;
-}
-.xblock-actions {
-    height: 80%;
 }
