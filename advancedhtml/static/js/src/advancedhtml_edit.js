@@ -34,6 +34,20 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             data: JSON.stringify({"set_data": editorContent}),
             success: updateEditorAfterAJAX
         });
+    });
+    $(element).find('.save-button').bind('click', function () {
+        var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
+        editorContent = editor.getValue();
+        runtime.notify('save', {state: 'start'});
+        var data = {
+            "set_data" : editorContent
+        };
+        $.http(setContentHandlerUrl, JSON.stringify(data).done(function(response) {
+            runtime.notify('save', {state: 'end'});
+        }));
+    });
+    $(element).find('.cancel-button').bind('click', function() {
+        runtime.notify('cancel', {});
     })
     $(function ($) {
         /* On Page Load */
