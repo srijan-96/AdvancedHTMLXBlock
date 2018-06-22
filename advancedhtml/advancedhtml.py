@@ -40,7 +40,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     unique_id = String(
         default="unique-id",
         help="Unique ID of this xblock",
-        scope=Scope.settings
+        scope=Scope.user_state
     )
     count = Integer(
         default=0, scope=Scope.user_state,
@@ -63,7 +63,9 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         The primary view of the AdvancedHTMLXBlock, shown to students
         when viewing courses.
         """
-        self.unique_id = str(uuid.uuid4())
+        if(self.count == 0):
+            self.unique_id = str(uuid.uuid4())
+            self.count = 1
         html = self.resource_string("static/html/advancedhtml.html")
         #frag = Fragment(html.format(self=self))
         frag = Fragment(html.format(self=self))
