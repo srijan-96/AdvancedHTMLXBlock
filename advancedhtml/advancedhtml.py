@@ -40,7 +40,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     unique_id = String(
         default="unique-id",
         help="Unique ID of this xblock",
-        scope=Scope.content
+        scope=Scope.settings
     )
     count = Integer(
         default=0, scope=Scope.user_state,
@@ -50,7 +50,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         default=defaultHTMLString, scope=Scope.content,
         help="Source code of HTML courseware"
     )
-    non_editable_metadata_fields=["display_name", "has_score", "icon_class", "htmlcontent"]
+    non_editable_metadata_fields=["display_name", "has_score", "icon_class", "htmlcontent", "unique_id"]
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
