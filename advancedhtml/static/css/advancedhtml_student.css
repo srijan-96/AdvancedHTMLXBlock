@@ -1,3 +1,6 @@
-.wrapper-xblock {
+.studio-xblock-wrapper {
+    width: 100% !important;
+}
+.studio-xblock-wrapper .wrapper-xblock {
     width: 100% !important;
 }
