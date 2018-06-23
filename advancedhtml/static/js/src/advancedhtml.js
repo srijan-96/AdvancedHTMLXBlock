@@ -26,6 +26,14 @@ function AdvancedHTMLXBlock(runtime, element, data) {
             var aTag = anchorTags[i];
             aTag.target = '_blank';
         }
+        setWidthForXBlockWrappers();
+    }
+    function setWidthForXBlockWrappers() {
+        var wrappers = document.getElementsByClassName("xblock-wrapper");
+        for(var i = 0; i < wrappers.length; i++) {
+            var wrap = wrappers[i];
+            wrap.style.width = "100%";
+        }
     }
     $(function ($) {
         /* Here's where you'd do things on page load. */

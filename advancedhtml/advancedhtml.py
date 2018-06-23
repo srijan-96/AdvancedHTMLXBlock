@@ -67,9 +67,8 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
             self.unique_id = str(uuid.uuid4())
             self.count = 1
         html = self.resource_string("static/html/advancedhtml.html")
-        #frag = Fragment(html.format(self=self))
         frag = Fragment(html.format(self=self))
-        #frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+        frag.add_css(self.resource_string("static/css/advancedhtml_student.css"))
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
         frag.initialize_js('AdvancedHTMLXBlock', {"unique-id" : self.unique_id})
         return frag
