@@ -2,6 +2,7 @@
 
 function AdvancedHTMLXBlock_EditorInit(runtime, element) {
     var editor;
+    var toggle;
     var editorContent = String.raw`<!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +25,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         preview.contentWindow.document.write(editorContent);
         preview.contentWindow.document.close();
     }
+    /*
     $("#saveEditor", element).click(function(eventObject) {
         var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
         editorContent = editor.getValue();
@@ -34,6 +36,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             success: updateEditorAfterAJAX
         });
     });
+    */
     $(element).find('.save-button').bind('click', function () {
         var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
         editorContent = editor.getValue();
@@ -47,6 +50,23 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
     });
     $(element).find('.cancel-button').bind('click', function() {
         runtime.notify('cancel', {});
+    });
+    $(element).find('#live_preview_toggle').bind('click', function() {
+        toggle = document.getElementById("live_preview_toggle");
+        var editor_wrapper = document.getElementById("advancedhtml_editor");
+        var live_preview = document.getElementById("advancedhtml_preview");
+        if(toggle.checked) {
+            live_preview.classList.add('col-6');
+            editor_wrapper.classList.remove('col-12');
+            editor_wrapper.classList.add('col-6');
+            live_preview.style.display = "block";
+        }
+        else {
+            live_preview.classList.remove('col-6');
+            live_preview.style.display = "none";
+            editor_wrapper.classList.remove('col-6');
+            editor_wrapper.classList.add('col-12');
+        }
     });
     $(function ($) {
         /* On Page Load */
@@ -77,5 +97,14 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             preview.contentWindow.document.write(tmp);
             preview.contentWindow.document.close();
         });
+        /* Disable live preview by default */
+        toggle = document.getElementById("live_preview_toggle");
+        toggle.checked = false;
+        var live_preview = document.getElementById("advancedhtml_preview");
+        live_preview.classList.remove('col-6');
+        live_preview.style.display = "none";
+        var editor_wrapper = document.getElementById("advancedhtml_editor");
+        editor_wrapper.classList.remove('col-6');
+        editor_wrapper.classList.add('col-12');
     });
 }
