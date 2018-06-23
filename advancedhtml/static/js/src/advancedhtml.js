@@ -7,10 +7,7 @@ function AdvancedHTMLXBlock(runtime, element, data) {
         var htmlcontent = result.htmlcontent;
         console.log(htmlcontent);
         var preview = document.getElementById(data["unique-id"] + "-iframe");
-        preview.contentWindow.document.open();
-        preview.contentWindow.document.write(htmlcontent);
-        preview.contentWindow.document.close();
-        preview.onload = function(e) {
+        preview.addEventListener("load", function(e) {
             /*
              * Make sure that your <body> + <<html> margin fits within the given margin of 35px
              * It is recommended that you have your <body> and <html> margin is zero
@@ -18,7 +15,10 @@ function AdvancedHTMLXBlock(runtime, element, data) {
             preview.height = preview.contentWindow.document.body.scrollHeight + 60;
             console.log("This is new function " + preview.height);
             addBlankTargetForAnchorTags(preview);
-        };
+        },true);
+        preview.contentWindow.document.open();
+        preview.contentWindow.document.write(htmlcontent);
+        preview.contentWindow.document.close();
     }
     function addBlankTargetForAnchorTags(adv_iframe) {
         var anchorTags = adv_iframe.contentDocument.getElementsByTagName("A");
