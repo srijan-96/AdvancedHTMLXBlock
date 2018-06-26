@@ -158,6 +158,10 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
                 toggleEditorTab(event, currentTabName);
             });
         }
+        /*
+         * Element and Runtime are jQuery objects, it won't have getAttribute()
+         */
+        console.log("Element = " + element);
         document.getElementById("advancedhtml_component_id").innerHTML = element.getAttribute("data-usage-id");
     });
 }
