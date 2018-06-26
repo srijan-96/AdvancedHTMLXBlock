@@ -39,7 +39,16 @@
                 <li class="field comp-setting-entry is-set">
                     <div class="wrapper-comp-setting">
                         <label class="label setting-label">Display Name</label>
-                        <input class="input setting-input" name="display_name" required>{self.display_name}</div>
+                        <input class="input setting-input" name="display_name" value="{self.display_name}">
+                    </div>
+                </li>
+                <li class="field comp-setting-entry is-set">
+                    <div class="wrapper-comp-setting">
+                        <label class="label setting-label">Live Preview</label>
+                        <select class="select setting-select" name="live_preview">
+                            <option value="enable">Enabled</option>
+                            <option value="disable">Disabled</option>
+                        </select>
                     </div>
                 </li>
             </ul>
