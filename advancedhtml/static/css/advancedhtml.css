@@ -44,6 +44,9 @@
 #settings-tab {
     height: 370px;
 }
+#editor-tab {
+    height: 370px;
+}
 #advancedhtml_edit_wrapper {
     height: 350px;
     margin: 5px;
