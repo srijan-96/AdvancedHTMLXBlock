@@ -114,10 +114,49 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         editor_wrapper.classList.add('col-12');
 
         /* Add the editor tabs */
+        /*
+         * Reference :
+         * https://github.com/appsembler/xblock-video/blob/27a4a2e3441cb0bb21c2693e4a33cc3efe39055e/video_xblock/static/js/studio-edit/studio-edit.js#L67
+         * If this is not working, you might want to check values of
+         * variables over log
+         */
+        function toggleEditorTab(event, tabName) {
+            var $tabDisable;
+            var $tabEnable;
+            var $otherTabName;
+            if (tabName === 'Editor') {
+                $tabEnable = $('#advancedhtml_edit_wrapper');
+                $tabDisable = $('#advancedhtml_settings_wrapper');
+                $otherTabName = 'Settings';
+            } else if (tabName === 'Settings') {
+                $tabEnable = $('#advancedhtml_settings_wrapper');
+                $tabDisable = $('#advancedhtml_edit_wrapper');
+                $otherTabName = 'Editor';
+            }
+            $(event.currentTarget).addClass('current');
+            $('.edit-menu-tab[data-tab-name=' + $otherTabName + ']').removeClass('current');
+            $tabDisable.addClass('is-hidden');
+            $tabEnable.removeClass('is-hidden');
+        }
+
         var $modalHeaderTabs = $('.editor-modes.action-list.action-modes');
         var isNotDummy = $('#sb-field-edit-href').val() !== '';
-        console.log("ModalHeaderTabs = " )
-        console.log($modalHeaderTabs);
-        console.log("isNotDummy = " + isNotDummy);
+        var currentTabName;
+        if(isNotDummy) {
+            $modalHeaderTabs
+                .append(
+                    '<li class="inner-tab-wrap">' +
+                    '   <button class="edit-menu-tab" data-tab-name="Settings">Settings</button>' +
+                    '</li>',
+                    '<li class="inner-tab-wrap">' +
+                    '   <button class="edit-menu-tab current" data-tab-name="Editor">Editor</button>' +
+                    '</li>'
+                );
+            // Bind listeners to the toggle buttons
+            $('.edit-menu-tab').click(function(event) {
+                currentTabName = $(event.currentTarget).attr('data-tab-name');
+                toggleEditorTab(event, currentTabName);
+            })
+        }
     });
 }
