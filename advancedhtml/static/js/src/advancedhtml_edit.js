@@ -25,18 +25,6 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         preview.contentWindow.document.write(editorContent);
         preview.contentWindow.document.close();
     }
-    /*
-    $("#saveEditor", element).click(function(eventObject) {
-        var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
-        editorContent = editor.getValue();
-        $.ajax({
-            type: "POST",
-            url: setContentHandlerUrl,
-            data: JSON.stringify({"set_data": editorContent}),
-            success: updateEditorAfterAJAX
-        });
-    });
-    */
     $(element).find('.save-button').bind('click', function () {
         /* Disable live preview by default */
         toggle = document.getElementById("live_preview_toggle");
@@ -124,5 +112,12 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         var editor_wrapper = document.getElementById("advancedhtml_editor");
         editor_wrapper.classList.remove('col-6');
         editor_wrapper.classList.add('col-12');
+
+        /* Add the editor tabs */
+        var $modalHeaderTabs = $('.editor-modes.action-list.action-modes');
+        var isNotDummy = $('#sb-field-edit-href').val() !== '';
+        console.log("ModalHeaderTabs = " )
+        console.log($modalHeaderTabs);
+        console.log("isNotDummy = " + isNotDummy);
     });
 }
