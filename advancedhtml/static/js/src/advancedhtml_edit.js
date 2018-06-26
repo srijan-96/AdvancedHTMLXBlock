@@ -156,7 +156,8 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             $('.edit-menu-tab').click(function(event) {
                 currentTabName = $(event.currentTarget).attr('data-tab-name');
                 toggleEditorTab(event, currentTabName);
-            })
+            });
         }
+        document.getElementById("advancedhtml_component_id").innerHTML = element.getAttribute("data-usage-id");
     });
 }
