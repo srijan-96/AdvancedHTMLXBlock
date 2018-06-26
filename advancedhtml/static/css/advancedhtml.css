@@ -1,22 +1,23 @@
 /* CSS for AdvancedHTMLXBlock */
 
-.advancedhtml_block .count {
+.bootstrap-wrapper .advancedhtml_block .count {
     font-weight: bold;
 }
 
-.advancedhtml_block p {
+.bootstrap-wrapper .advancedhtml_block p {
     cursor: pointer;
 }
+/*
 #saveEditor {
     top: 60%;
     position: absolute;
 }
-#AdVeDiToR {
-    width: 50%;
-    height: 50%;
-    left: 0px;
+#advancedhtml_editor {
+    width: 50% ;
+    height: 50% ;
+    left: 0px ;
     right: 0px;
-    top: 50px;
+    top: 50px ;
     bottom: 0px;
     position: absolute;
 }
@@ -35,3 +36,136 @@
     top: 65%;
     position:absolute;
 }
+*/
+.bootstrap-wrapper .CodeMirror {
+    height: 100% !important;
+    width: 100% !important;
+}
+#settings-tab {
+    height: 370px;
+}
+#advancedhtml_edit_wrapper {
+    height: 350px;
+    margin: 5px;
+    padding: 5px;
+    /* top: 20%; Needed for workbench only */
+}
+.bootstrap-wrapper #advancedhtml_liveoption_wrapper {
+    height: 100%;
+}
+.bootstrap-wrapper #advancedhtml_toolbar {
+    margin: 0px;
+    padding: 0px;
+    height: 10%;
+}
+.bootstrap-wrapper #advancedhtml_workarea {
+    height: 85%;
+    padding: 0px;
+    margin: 0px;
+}
+.bootstrap-wrapper #advancedhtml_editor {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+.bootstrap-wrapper #advancedhtml_preview {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    transition: all 0.2s ease-in-out;
+}
+.bootstrap-wrapper #AdVeDiToR {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    resize: both;
+}
+.bootstrap-wrapper #AdVhTmLpReViEw {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.bootstrap-wrapper .heading {
+    font-size: 20px;
+}
+.bootstrap-wrapper .live_preview_toggle_wrapper {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+.bootstrap-wrapper li {
+    float: left;
+}
+.bootstrap-wrapper .live_pre_title {
+    height: 20px;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 7px;
+}
+/* CheckBox => Toggle Button */
+/* The switch - the box around the slider */
+.bootstrap-wrapper .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .bootstrap-wrapper .switch input {display:none;}
+  
+  /* The slider */
+  .bootstrap-wrapper .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .bootstrap-wrapper .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .bootstrap-wrapper input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  .bootstrap-wrapper input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  .bootstrap-wrapper input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .bootstrap-wrapper .slider.round {
+    border-radius: 34px;
+  }
+  
+  .bootstrap-wrapper .slider.round:before {
+    border-radius: 50%;
+  }

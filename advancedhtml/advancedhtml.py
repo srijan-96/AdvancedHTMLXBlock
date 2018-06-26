@@ -1,9 +1,14 @@
 """TO-DO: Write a description of what this XBlock is."""
 
 import pkg_resources
+
+import uuid
+
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
+
+from xblockutils.publish_event import PublishEventMixin
 
 defaultHTMLString = """<!DOCTYPE html>
 <html>
@@ -14,7 +19,7 @@ defaultHTMLString = """<!DOCTYPE html>
     </body>
 </html>
 """
-class AdvancedHTMLXBlock(XBlock):
+class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     """
     TO-DO: document what your XBlock does.
     """
@@ -27,8 +32,16 @@ class AdvancedHTMLXBlock(XBlock):
         default="Advanced HTML Block",
         help="The display name of the XBlock"
     )
+    name = String(
+        default="Advanced HTML XBlock"
+    )
     has_score=False
-    icon_class=other
+    icon_class="other"
+    unique_id = String(
+        default="unique-id",
+        help="Unique ID of this xblock",
+        scope=Scope.user_state
+    )
     count = Integer(
         default=0, scope=Scope.user_state,
         help="A simple counter, to show something happening",
@@ -37,7 +50,7 @@ class AdvancedHTMLXBlock(XBlock):
         default=defaultHTMLString, scope=Scope.content,
         help="Source code of HTML courseware"
     )
-    non_editable_metadata_fields=["display_name", "has_score", "icon_class", "htmlcontent"]
+    non_editable_metadata_fields=["display_name", "has_score", "icon_class", "htmlcontent", "unique_id"]
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -50,12 +63,14 @@ class AdvancedHTMLXBlock(XBlock):
         The primary view of the AdvancedHTMLXBlock, shown to students
         when viewing courses.
         """
+        if(self.count == 0):
+            self.unique_id = str(uuid.uuid4())
+            self.count = 1
         html = self.resource_string("static/html/advancedhtml.html")
-        #frag = Fragment(html.format(self=self))
-        frag = Fragment(html)
-        frag.add_css(self.resource_string("static/css/advancedhtml.css"))
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/advancedhtml_student.css"))
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
-        frag.initialize_js('AdvancedHTMLXBlock')
+        frag.initialize_js('AdvancedHTMLXBlock', {"unique-id" : self.unique_id})
         return frag
 
     def studio_view(self, context=None):
@@ -64,8 +79,31 @@ class AdvancedHTMLXBlock(XBlock):
         """
         html = self.resource_string("static/html/advancedhtml_edit.html")
         frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/codemirror.css"))
+        frag.add_css(self.resource_string("static/css/foldgutter.css"))
+        frag.add_css(self.resource_string("static/css/bootstrap-grid.css"))
         frag.add_css(self.resource_string("static/css/advancedhtml.css"))
-        frag.add_javascript(self.resource_string("static/js/src/advancedhtml.js"))
+        # Load the main CodeMirror first
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/codemirror.js"))
+        # Load the CodeMirror addons 
+        # Folder : addons/edit
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/closebrackets.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/closetag.js"))
+        # Folder : addons/fold
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/foldcode.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/foldgutter.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/brace-fold.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/comment-fold.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/indent-fold.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/xml-fold.js"))
+        # Load the CodeMirror modes
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/css.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/htmlmixed.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/javascript.js"))
+        frag.add_javascript(self.resource_string("static/js/src/codemirror/xml.js"))
+        # Finally load our JavaScript
+        frag.add_javascript(self.resource_string("static/js/src/advancedhtml_edit.js"))
+
         frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
         return frag
 
