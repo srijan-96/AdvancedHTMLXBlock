@@ -40,10 +40,14 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         */
         var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
         editorContent = editor.getValue();
+        var display_name_value = document.getElementById("display_name_option").value;
+        if(display_name_value==null || display_name_value=="" || ! (display_name_value.replace(/^\s+/g, '').length) ) {
+            display_name_value = "Advanced HTML";
+        }
         runtime.notify('save', {state: 'start'});
         var data = {
             "set_data" : editorContent,
-            "set_display_name" : document.getElementById("display_name_option").value
+            "set_display_name" : display_name_value
         };
         $.post(setContentHandlerUrl, JSON.stringify(data)).done(function(response) {
             runtime.notify('save', {state: 'end'});
