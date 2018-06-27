@@ -23,8 +23,8 @@ def package_data(pkg, roots):
 
 setup(
     name='advancedhtml-xblock',
-    version='0.1',
-    description='advancedhtml XBlock',   # TODO: write a better description.
+    version='0.1.1',
+    description='Advanced HTML XBlock',
     license='UNKNOWN',          # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
     packages=[
         'advancedhtml',
