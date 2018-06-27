@@ -55,6 +55,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
     });
     $(element).find('.cancel-button').bind('click', function() {
         /* Disable live preview by default */
+        /*
         toggle = document.getElementById("live_preview_toggle");
         toggle.checked = false;
         var live_preview = document.getElementById("advancedhtml_preview");
@@ -63,6 +64,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         var editor_wrapper = document.getElementById("advancedhtml_editor");
         editor_wrapper.classList.remove('col-6');
         editor_wrapper.classList.add('col-12');
+        */
         runtime.notify('cancel', {});
     });
     /*

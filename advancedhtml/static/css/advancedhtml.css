@@ -123,13 +123,13 @@
     padding: 5px 10px;
     margin-right: 2%;
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 0.9em;
     background-color: transparent;
     color: #999;
 }
 .edit-menu-tab:hover {
     background-color: #1f618d;
-    color: #000;
+    color: #fff;
 }
 .edit-menu-tab.current {
     background-color: #4c4c4c;
