@@ -1,5 +1,12 @@
 # AdvancedHTMLXBlock
-Advanced HTML XBlock for OpenEdx(https://github.com/edx) [WIP]
+Advanced HTML XBlock for OpenEdx(https://github.com/edx) [Beta]
+
+### Features :
+- Full CSS support
+- Live Preview HTML
+- Code Indentation
+- Autocomplete Tags
+- Autocomplete Brackets
 
 ### Introduction :
 OpenEdx's current HTML component does not allow you add internal and/or external CSS(via \<link\>), also the raw HTML editor does nt save your indentation and shows a dirty minified coe.
