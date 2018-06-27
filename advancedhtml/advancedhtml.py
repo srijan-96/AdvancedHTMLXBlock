@@ -1,4 +1,4 @@
-"""TO-DO: Write a description of what this XBlock is."""
+"""An XBlock to allow internal and external CSS in your course"""
 
 import pkg_resources
 
@@ -84,13 +84,26 @@ defaultHTMLString = """<!DOCTYPE html>
 """
 class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     """
-    TO-DO: document what your XBlock does.
+    Advanced HTML XBlock
+
+    This XBlock allows internal CSS and external CSS(fetched through <link>)
+    to be included in your course content
+
+    The XBlock will allow course creator to edit raw HTML content using 
+    CodeMirror 5.38 (studio_view)
+    After the contents are saved, the XBlock will wrap these contents inside 
+    an iframe preserving and conficing all CSS in it.(student_view)
+
+    Each iframe is given a unique id and hence you should be able to use 
+    multiple XBlocks on same page.
+
+    Notes:
+    While dragging XBlock in studio, it is possible that after dragging your 
+    XBlock shows nothing, don't worry, all your data is still stored.
+    This is because studio does not call student_view after dragging
+    If you want to preview in this case, click on edit once and save/cance
     """
 
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
     display_name = String(
         default="Advanced HTML",
         help="The display name of the XBlock"
@@ -105,6 +118,8 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         help="Unique ID of this xblock",
         scope=Scope.user_state
     )
+    # Even though this is default field, it is used 
+    # DONOT delete
     count = Integer(
         default=0, scope=Scope.user_state,
         help="A simple counter, to show something happening",
@@ -120,7 +135,6 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
 
-    # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
         The primary view of the AdvancedHTMLXBlock, shown to students
@@ -170,8 +184,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
         return frag
 
-    # TO-DO: change this handler to perform your own actions.  You may need more
-    # than one handler, or you may not need any handlers at all.
+    # Default XBlock function
     @XBlock.json_handler
     def increment_count(self, data, suffix=''):
         """
