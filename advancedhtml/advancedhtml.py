@@ -5,7 +5,7 @@ import pkg_resources
 import uuid
 
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope, String
+from xblock.fields import Integer, Scope, String, Boolean
 from xblock.fragment import Fragment
 
 from xblockutils.publish_event import PublishEventMixin
@@ -128,6 +128,11 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         default=defaultHTMLString, scope=Scope.content,
         help="Source code of HTML courseware"
     )
+    live_preview = Boolean(
+        default=True,
+        scope = Scope.content,
+        help="Live Preview Flag"
+    )
     non_editable_metadata_fields=["display_name", "has_score", "icon_class", "htmlcontent", "unique_id"]
 
     def resource_string(self, path):
@@ -181,7 +186,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         # Finally load our JavaScript
         frag.add_javascript(self.resource_string("static/js/src/advancedhtml_edit.js"))
 
-        frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
+        frag.initialize_js('AdvancedHTMLXBlock_EditorInit', {"live_preview" : self.live_preview})
         return frag
 
     # Default XBlock function
@@ -205,6 +210,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     def set_html_content(self, data, suffix=''):
         self.htmlcontent = data['set_data']
         self.display_name = data['set_display_name']
+        self.live_preview = data['set_live_preview']
         return {"htmlcontent": self.htmlcontent}
     
     # TO-DO: change this to create the scenarios you'd like to see in the
