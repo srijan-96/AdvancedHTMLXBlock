@@ -29,7 +29,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
 
     # TO-DO: delete count, and define your own fields.
     display_name = String(
-        default="Advanced HTML Block",
+        default="Advanced HTML",
         help="The display name of the XBlock"
     )
     name = String(
@@ -128,6 +128,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     @XBlock.json_handler
     def set_html_content(self, data, suffix=''):
         self.htmlcontent = data['set_data']
+        self.display_name = data['set_display_name']
         return {"htmlcontent": self.htmlcontent}
     
     # TO-DO: change this to create the scenarios you'd like to see in the

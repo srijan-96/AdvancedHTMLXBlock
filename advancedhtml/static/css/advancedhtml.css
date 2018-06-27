@@ -59,10 +59,10 @@
 .bootstrap-wrapper #advancedhtml_toolbar {
     margin: 0px;
     padding: 0px;
-    height: 10%;
+    height: 3%;
 }
 .bootstrap-wrapper #advancedhtml_workarea {
-    height: 85%;
+    height: 92%;
     padding: 0px;
     margin: 0px;
 }
@@ -71,12 +71,14 @@
     padding: 0px;
     margin: 0px;
     position: relative;
+    right: 5px;
     transition: all 0.2s ease-in-out;
 }
 .bootstrap-wrapper #advancedhtml_preview {
     height: 100%;
     margin: 0px;
     padding: 0px;
+    left: 5px;
     transition: all 0.2s ease-in-out;
 }
 .bootstrap-wrapper #AdVeDiToR {
@@ -113,62 +115,50 @@
     margin: 0;
     padding: 7px;
 }
-/* CheckBox => Toggle Button */
-/* The switch - the box around the slider */
-.bootstrap-wrapper .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+.edit-menu-tab {
+    float:right;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 2%;
+    font-weight: 600;
+    font-size: 1.2em;
+    background-color: transparent;
+    color: #999;
+}
+.edit-menu-tab:hover {
+    background-color: #1f618d;
+    color: #000;
+}
+.edit-menu-tab.current {
+    background-color: #4c4c4c;
+    color: #fff;
+}
+
+.knockout-top-to-bottom {
+    position: relative; 
   }
-  
-  /* Hide default HTML checkbox */
-  .bootstrap-wrapper .switch input {display:none;}
-  
-  /* The slider */
-  .bootstrap-wrapper .slider {
+  .knockout-top-to-bottom:before, .knockout-top-to-bottom:after {
+    content: "";
     position: absolute;
-    cursor: pointer;
+  }
+  .knockout-top-to-bottom:before {
+    top: -3px;
+    left: -3px;
+    bottom: 0;
+    right: -3px;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
+    background-image: -webkit-linear-gradient(#000, transparent);
+    background-image: -moz-linear-gradient(#000, transparent);
+    background-image: -o-linear-gradient(#000, transparent);
+    z-index: -2;
+  }
+  .knockout-top-to-bottom:after {
+    z-index: -1;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .bootstrap-wrapper .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .bootstrap-wrapper input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  .bootstrap-wrapper input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  .bootstrap-wrapper input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .bootstrap-wrapper .slider.round {
-    border-radius: 34px;
-  }
-  
-  .bootstrap-wrapper .slider.round:before {
-    border-radius: 50%;
+    right: 0;
+    background: #a4b9ff;
   }
