@@ -3,6 +3,7 @@
 function AdvancedHTMLXBlock_EditorInit(runtime, element) {
     var editor;
     var toggle;
+    var display_name;
     var editorContent = String.raw`<!DOCTYPE html>
 <html>
     <head>
@@ -25,20 +26,9 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         preview.contentWindow.document.write(editorContent);
         preview.contentWindow.document.close();
     }
-    /*
-    $("#saveEditor", element).click(function(eventObject) {
-        var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
-        editorContent = editor.getValue();
-        $.ajax({
-            type: "POST",
-            url: setContentHandlerUrl,
-            data: JSON.stringify({"set_data": editorContent}),
-            success: updateEditorAfterAJAX
-        });
-    });
-    */
     $(element).find('.save-button').bind('click', function () {
         /* Disable live preview by default */
+        /*
         toggle = document.getElementById("live_preview_toggle");
         toggle.checked = false;
         var live_preview = document.getElementById("advancedhtml_preview");
@@ -47,11 +37,17 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         var editor_wrapper = document.getElementById("advancedhtml_editor");
         editor_wrapper.classList.remove('col-6');
         editor_wrapper.classList.add('col-12');
+        */
         var setContentHandlerUrl = runtime.handlerUrl(element, 'set_html_content');
         editorContent = editor.getValue();
+        var display_name_value = document.getElementById("display_name_option").value;
+        if(display_name_value==null || display_name_value=="" || ! (display_name_value.replace(/^\s+/g, '').length) ) {
+            display_name_value = "Advanced HTML";
+        }
         runtime.notify('save', {state: 'start'});
         var data = {
-            "set_data" : editorContent
+            "set_data" : editorContent,
+            "set_display_name" : display_name_value
         };
         $.post(setContentHandlerUrl, JSON.stringify(data)).done(function(response) {
             runtime.notify('save', {state: 'end'});
@@ -59,6 +55,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
     });
     $(element).find('.cancel-button').bind('click', function() {
         /* Disable live preview by default */
+        /*
         toggle = document.getElementById("live_preview_toggle");
         toggle.checked = false;
         var live_preview = document.getElementById("advancedhtml_preview");
@@ -67,8 +64,10 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         var editor_wrapper = document.getElementById("advancedhtml_editor");
         editor_wrapper.classList.remove('col-6');
         editor_wrapper.classList.add('col-12');
+        */
         runtime.notify('cancel', {});
     });
+    /*
     $(element).find('#live_preview_toggle').bind('click', function() {
         toggle = document.getElementById("live_preview_toggle");
         var editor_wrapper = document.getElementById("advancedhtml_editor");
@@ -86,6 +85,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             editor_wrapper.classList.add('col-12');
         }
     });
+    */
     $(function ($) {
         /* On Page Load */
         var getContentHandlerUrl = runtime.handlerUrl(element, 'get_html_content');
@@ -116,6 +116,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
             preview.contentWindow.document.close();
         });
         /* Disable live preview by default */
+        /*
         toggle = document.getElementById("live_preview_toggle");
         toggle.checked = false;
         var live_preview = document.getElementById("advancedhtml_preview");
@@ -124,5 +125,73 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         var editor_wrapper = document.getElementById("advancedhtml_editor");
         editor_wrapper.classList.remove('col-6');
         editor_wrapper.classList.add('col-12');
+        */
+       console.log(document.getElementById("display_name_option").value);
+       var live_preview = document.getElementById("live_preview_option");
+       console.log(live_preview.options[live_preview.selectedIndex].value);
+        /* Add the editor tabs */
+        /*
+         * Reference :
+         * https://github.com/appsembler/xblock-video/blob/27a4a2e3441cb0bb21c2693e4a33cc3efe39055e/video_xblock/static/js/studio-edit/studio-edit.js#L67
+         * If this is not working, you might want to check values of
+         * variables over log
+         */
+        function toggleEditorTab(event, tabName) {
+            var $tabDisable;
+            var $tabEnable;
+            var $otherTabName;
+            var live_preview_option = document.getElementById("live_preview_option");
+            if (tabName === 'Editor') {
+                $tabEnable = $('#advancedhtml_edit_wrapper');
+                $tabDisable = $('#advancedhtml_settings_wrapper');
+                $otherTabName = 'Settings';
+                if(live_preview_option.options[live_preview_option.selectedIndex].value == "disable") {
+                    var live_preview = document.getElementById("advancedhtml_preview");
+                    live_preview.classList.remove('col-6');
+                    live_preview.style.display = "none";
+                    var editor_wrapper = document.getElementById("advancedhtml_editor");
+                    editor_wrapper.classList.remove('col-6');
+                    editor_wrapper.classList.add('col-12');
+                }
+                else {
+                    var live_preview = document.getElementById("advancedhtml_preview");
+                    var editor_wrapper = document.getElementById("advancedhtml_editor");
+                    live_preview.classList.add('col-6');
+                    editor_wrapper.classList.remove('col-12');
+                    editor_wrapper.classList.add('col-6');
+                    live_preview.style.display = "block";
+
+                }
+
+            } else if (tabName === 'Settings') {
+                $tabEnable = $('#advancedhtml_settings_wrapper');
+                $tabDisable = $('#advancedhtml_edit_wrapper');
+                $otherTabName = 'Editor';
+            }
+            $(event.currentTarget).addClass('current');
+            $('.edit-menu-tab[data-tab-name=' + $otherTabName + ']').removeClass('current');
+            $tabDisable.addClass('is-hidden');
+            $tabEnable.removeClass('is-hidden');
+        }
+
+        var $modalHeaderTabs = $('.editor-modes.action-list.action-modes');
+        var isNotDummy = $('#sb-field-edit-href').val() !== '';
+        var currentTabName;
+        if(isNotDummy) {
+            $modalHeaderTabs
+                .append(
+                    '<li class="inner-tab-wrap">' +
+                    '   <button class="edit-menu-tab" data-tab-name="Settings">Settings</button>' +
+                    '</li>',
+                    '<li class="inner-tab-wrap">' +
+                    '   <button class="edit-menu-tab current" data-tab-name="Editor">Editor</button>' +
+                    '</li>'
+                );
+            // Bind listeners to the toggle buttons
+            $('.edit-menu-tab').click(function(event) {
+                currentTabName = $(event.currentTarget).attr('data-tab-name');
+                toggleEditorTab(event, currentTabName);
+            });
+        }
     });
 }

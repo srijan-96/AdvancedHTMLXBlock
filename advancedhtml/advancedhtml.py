@@ -1,4 +1,4 @@
-"""TO-DO: Write a description of what this XBlock is."""
+"""An XBlock to allow internal and external CSS in your course"""
 
 import pkg_resources
 
@@ -13,23 +13,99 @@ from xblockutils.publish_event import PublishEventMixin
 defaultHTMLString = """<!DOCTYPE html>
 <html>
     <head>
+        <style>
+            /* 
+             * Do not modify html, body margin and padding 
+             * for best results
+             */
+            html, body {
+                padding: 0 !important;
+                margin: 0 !important;
+                font-family: "Arial Black", Gadget, sans-serif !important;
+            }
+            h2 {
+                color: #f1f1f1;
+                padding-left: 30px;
+                padding-right: 5px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+                background-size: 400% 400%;
+	            -webkit-animation: Gradient 15s ease infinite;
+	            -moz-animation: Gradient 15s ease infinite;
+	            animation: Gradient 15s ease infinite;
+            }
+            /* https://codepen.io/P1N2O/pen/pyBNzX */
+            @-webkit-keyframes Gradient {
+                0% {
+                    background-position: 0% 50%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+
+            @-moz-keyframes Gradient {
+                0% {
+                    background-position: 0% 50%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+
+            @keyframes Gradient {
+                0% {
+                    background-position: 0% 50%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+            p {
+                color: #111111;
+            }
+        </style>
     </head>
     <body>
-        <p>This is an Advanced HTML Component</p>
+        <h2>Welcome to Advanced HTML Component</h2>
+        <p>Make your courses beautiful by including CSS</p>
     </body>
 </html>
 """
 class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     """
-    TO-DO: document what your XBlock does.
+    Advanced HTML XBlock
+
+    This XBlock allows internal CSS and external CSS(fetched through <link>)
+    to be included in your course content
+
+    The XBlock will allow course creator to edit raw HTML content using 
+    CodeMirror 5.38 (studio_view)
+    After the contents are saved, the XBlock will wrap these contents inside 
+    an iframe preserving and conficing all CSS in it.(student_view)
+
+    Each iframe is given a unique id and hence you should be able to use 
+    multiple XBlocks on same page.
+
+    Notes:
+    While dragging XBlock in studio, it is possible that after dragging your 
+    XBlock shows nothing, don't worry, all your data is still stored.
+    This is because studio does not call student_view after dragging
+    If you want to preview in this case, click on edit once and save/cance
     """
 
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
     display_name = String(
-        default="Advanced HTML Block",
+        default="Advanced HTML",
         help="The display name of the XBlock"
     )
     name = String(
@@ -42,6 +118,8 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         help="Unique ID of this xblock",
         scope=Scope.user_state
     )
+    # Even though this is default field, it is used 
+    # DONOT delete
     count = Integer(
         default=0, scope=Scope.user_state,
         help="A simple counter, to show something happening",
@@ -57,7 +135,6 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
 
-    # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
         """
         The primary view of the AdvancedHTMLXBlock, shown to students
@@ -107,8 +184,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
         frag.initialize_js('AdvancedHTMLXBlock_EditorInit')
         return frag
 
-    # TO-DO: change this handler to perform your own actions.  You may need more
-    # than one handler, or you may not need any handlers at all.
+    # Default XBlock function
     @XBlock.json_handler
     def increment_count(self, data, suffix=''):
         """
@@ -128,6 +204,7 @@ class AdvancedHTMLXBlock(XBlock, PublishEventMixin):
     @XBlock.json_handler
     def set_html_content(self, data, suffix=''):
         self.htmlcontent = data['set_data']
+        self.display_name = data['set_display_name']
         return {"htmlcontent": self.htmlcontent}
     
     # TO-DO: change this to create the scenarios you'd like to see in the
