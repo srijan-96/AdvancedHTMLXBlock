@@ -45,3 +45,6 @@ The HTML component uses very old versions of editors TinyMCE and CodeMirror whic
 AdvancedHTMLXBlock essentially extends the raw HTML component of OpenEdx. This XBlock uses the latest version of CodeMirror(5.38 as of June 2018).
 Editor is configured to enable code folding/code indentation etc. All the html content received from the editor is then put into an iframe.
 The height of the iframe is chanegd on changing html content and iframe is styled so that it looks virtually absent.
+
+###### Note:
+It is required that your html and body tags have fixed height at the time of rendering. If they don't, you may see a weird scrollbar on left side of iframe. If you want to avoid it, have a fixed height for html and body.
