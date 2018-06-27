@@ -211,6 +211,8 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element, data) {
             editor_wrapper.classList.remove('col-12');
             editor_wrapper.classList.add('col-6');
             live_preview_wrapper.style.display = "block";
+            document.getElementById("advancedhtml_toolbar").style.display="none";
+            document.getElementById("message").style.display="none";
         }
         else {
             live_preview.value = "disable";
@@ -220,6 +222,8 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element, data) {
             var editor_wrapper = document.getElementById("advancedhtml_editor");
             editor_wrapper.classList.remove('col-6');
             editor_wrapper.classList.add('col-12');
+            document.getElementById("advancedhtml_toolbar").style.display="block";
+            document.getElementById("message").style.display="block";
         }
     });
 }
