@@ -54,14 +54,14 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element, data) {
         else {
             live_preview_value = false;
         }
-        //runtime.notify('save', {state: 'start'});
+        runtime.notify('save', {state: 'start'});
         var data = {
             "set_data" : editorContent,
             "set_display_name" : display_name_value,
             "set_live_preview" : live_preview_value
         };
         $.post(setContentHandlerUrl, JSON.stringify(data)).done(function(response) {
-            //runtime.notify('save', {state: 'end'});
+            runtime.notify('save', {state: 'end'});
         });
     });
     $(element).find('.cancel-button').bind('click', function() {
@@ -222,8 +222,8 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element, data) {
             var editor_wrapper = document.getElementById("advancedhtml_editor");
             editor_wrapper.classList.remove('col-6');
             editor_wrapper.classList.add('col-12');
-            document.getElementById("advancedhtml_toolbar").style.display="block";
-            document.getElementById("message").style.display="block";
+            document.getElementById("advancedhtml_toolbar").style.display="flex";
+            document.getElementById("message").style.display="flex";
         }
     });
 }
