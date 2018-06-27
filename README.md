@@ -22,7 +22,15 @@ Advanced HTML XBlock for OpenEdx(https://github.com/edx) [Beta]
 7. Save changes 
 8. Advanced HTML component should be present in "Advanced" section in your course.
 
-**Special Note for Docker based devstack : **
+***Special Note for Docker based devstack :***
+Since the docker based devstack has 2 separate containers for studio and lms, you have to install your xblock in both the containers and then restart both the containers. The workflow would look something like this :
+1. `$ make studio-shell`
+2. Install the xblock as mentioned above
+3. `# exit` from studio-shell
+4. `$ make lms-shell`
+5. Install the xblock as mentioned above
+6. `# exit` from lms-shell
+7. `$ make studio-restart && make lms-restart`
 
 
 
