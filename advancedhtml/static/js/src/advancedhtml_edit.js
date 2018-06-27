@@ -1,6 +1,6 @@
 
 
-function AdvancedHTMLXBlock_EditorInit(runtime, element) {
+function AdvancedHTMLXBlock_EditorInit(runtime, element, data) {
     var editor;
     var toggle;
     var display_name;
@@ -44,10 +44,21 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         if(display_name_value==null || display_name_value=="" || ! (display_name_value.replace(/^\s+/g, '').length) ) {
             display_name_value = "Advanced HTML";
         }
+        var live_preview_value;
+        var live_preview_option = document.getElementById("live_preview_option");
+        console.log(live_preview_option.selectedIndex);
+        console.log(live_preview_option.value);
+        if(live_preview_option.value === "enable") {
+            live_preview_value = true;
+        }
+        else {
+            live_preview_value = false;
+        }
         runtime.notify('save', {state: 'start'});
         var data = {
             "set_data" : editorContent,
-            "set_display_name" : display_name_value
+            "set_display_name" : display_name_value,
+            "set_live_preview" : live_preview_value
         };
         $.post(setContentHandlerUrl, JSON.stringify(data)).done(function(response) {
             runtime.notify('save', {state: 'end'});
@@ -98,7 +109,7 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         /* Initialize CodeMirror */
         editor = CodeMirror.fromTextArea(document.getElementById("AdVeDiToR"), {
             lineNumbers: true,
-            lineWrapping: false,
+            lineWrapping: true,
             mode: 'htmlmixed',
             tabSize: 4,
             indentUnit: 4,
@@ -128,7 +139,6 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
         */
        console.log(document.getElementById("display_name_option").value);
        var live_preview = document.getElementById("live_preview_option");
-       console.log(live_preview.options[live_preview.selectedIndex].value);
         /* Add the editor tabs */
         /*
          * Reference :
@@ -152,6 +162,9 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
                     var editor_wrapper = document.getElementById("advancedhtml_editor");
                     editor_wrapper.classList.remove('col-6');
                     editor_wrapper.classList.add('col-12');
+                    document.getElementById("advancedhtml_toolbar").style.display="flex";
+                    document.getElementById("message").style.display="flex";
+                    editor_wrapper.style.height="93%";
                 }
                 else {
                     var live_preview = document.getElementById("advancedhtml_preview");
@@ -160,7 +173,9 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
                     editor_wrapper.classList.remove('col-12');
                     editor_wrapper.classList.add('col-6');
                     live_preview.style.display = "block";
-
+                    document.getElementById("advancedhtml_toolbar").style.display="none";
+                    document.getElementById("message").style.display="none";
+                    editor_wrapper.style.height="100%";
                 }
 
             } else if (tabName === 'Settings') {
@@ -192,6 +207,30 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element) {
                 currentTabName = $(event.currentTarget).attr('data-tab-name');
                 toggleEditorTab(event, currentTabName);
             });
+        }
+        if(data['live_preview'] == true || data['live_preview'] === 'true') {
+            live_preview.value = "enable";
+            var live_preview_wrapper = document.getElementById("advancedhtml_preview");
+            var editor_wrapper = document.getElementById("advancedhtml_editor");
+            live_preview_wrapper.classList.add('col-6');
+            editor_wrapper.classList.remove('col-12');
+            editor_wrapper.classList.add('col-6');
+            live_preview_wrapper.style.display = "block";
+            document.getElementById("advancedhtml_toolbar").style.display="none";
+            document.getElementById("message").style.display="none";
+            editor_wrapper.style.height="100%";
+        }
+        else {
+            live_preview.value = "disable";
+            var live_preview_wrapper = document.getElementById("advancedhtml_preview");
+            live_preview_wrapper.classList.remove('col-6');
+            live_preview_wrapper.style.display = "none";
+            var editor_wrapper = document.getElementById("advancedhtml_editor");
+            editor_wrapper.classList.remove('col-6');
+            editor_wrapper.classList.add('col-12');
+            document.getElementById("advancedhtml_toolbar").style.display="flex";
+            document.getElementById("message").style.display="flex";
+            editor_wrapper.style.height="93%";
         }
     });
 }

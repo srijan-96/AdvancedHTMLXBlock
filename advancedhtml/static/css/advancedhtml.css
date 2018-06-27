@@ -48,7 +48,7 @@
     height: 370px;
 }
 #advancedhtml_edit_wrapper {
-    height: 350px;
+    height: 380px;
     margin: 5px;
     padding: 5px;
     /* top: 20%; Needed for workbench only */
@@ -59,10 +59,10 @@
 .bootstrap-wrapper #advancedhtml_toolbar {
     margin: 0px;
     padding: 0px;
-    height: 3%;
+    height: 7%;
 }
 .bootstrap-wrapper #advancedhtml_workarea {
-    height: 95%;
+    height: 93%;
     padding: 0px;
     margin: 0px;
 }
