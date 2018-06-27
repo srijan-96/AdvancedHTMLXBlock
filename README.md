@@ -48,3 +48,4 @@ The height of the iframe is chanegd on changing html content and iframe is style
 
 ###### Note:
 It is required that your html and body tags have fixed height at the time of rendering. If they don't, you may see a weird scrollbar on left side of iframe. If you want to avoid it, have a fixed height for html and body.
+In case you have an animation like [this](https://www.w3schools.com/css/tryit.asp?filename=trycss3_animation_count2) where the height changes as the animation progresses, wrap the entire animation into a div capable of holding the maximum height change so that body will have fixed height
