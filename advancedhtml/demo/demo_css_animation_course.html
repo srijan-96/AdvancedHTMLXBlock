@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <style>
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                font-family: "Arial Black", Gadget, sans-serif !important;
+            }
+            h2 {
+                background-color: #1691fd;
+                color: white;
+                margin: 0;
+                padding-top: 15px;
+                padding-left: 45px;
+                padding-bottom: 15px;
+                padding-right: 15px;
+            }
+            code {
+                background-color: #e3e3e3;
+                color: crimson;
+            }
+            h3 {
+                color: #f1f1f1;
+                padding-left: 30px;
+                padding-right: 5px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+                background-size: 400% 400%;
+	            -webkit-animation: Gradient 15s ease infinite;
+	            -moz-animation: Gradient 15s ease infinite;
+	            animation: Gradient 15s ease infinite;
+            }
+            @-webkit-keyframes Gradient {
+                0% {
+                    background-position: 0% 50%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+
+            @-moz-keyframes Gradient {
+                0% {
+                    background-position: 0% 50%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+
+            @keyframes Gradient {
+                0% {
+                    background-position: 0% 50%
+                }
+                50% {
+                    background-position: 100% 50%
+                }
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+            #content {
+                padding-top: 0;
+                padding-bottom: 25px;
+                padding-left: 45px;
+                padding-right: 25px;
+            }
+            /* For demo 1 */
+            @keyframes example_demo1 {
+                from{background-color: red}
+                to{background-color: yellow}
+            }
+            #demo_1 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                animation-name: example_demo1;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+            }
+            @keyframes example_demo2 {
+                0%   {background-color: red;}
+                25%  {background-color: yellow;}
+                50%  {background-color: blue;}
+                100% {background-color: green;}
+            }
+            #demo_2 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                animation-name: example_demo2;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+            }
+            #animated_div {
+                width:70px;
+                height:47px;
+                background: #92B901;
+                color: #ffffff;
+                position: relative;
+                font-weight:bold;
+                font-size:34px;
+                padding:10px;
+                vertical-align: center;
+                animation:animated_div 5s infinite;
+                -moz-animation:animated_div 5s infinite;
+                -webkit-animation:animated_div 5s infinite;
+                -o-animation:animated_div 5s infinite;
+                border-radius:5px;
+                -webkit-border-radius:5px;
+            }
+
+                @keyframes animated_div
+            {
+                0% {transform: rotate(0deg);left:0px;}
+                25% {transform: rotate(20deg);left:0px;}
+                50% {transform: rotate(0deg);left:500px;}
+                55% {transform: rotate(0deg);left:500px;}
+                70% {transform: rotate(0deg);left:500px;background:#1ec7e6;}
+                100% {transform: rotate(-360deg);left:0px;}
+            }
+
+                @-webkit-keyframes animated_div
+            {
+                0% {-webkit-transform: rotate(0deg);left:0px;}
+                25% {-webkit-transform: rotate(20deg);left:0px;}
+                50% {-webkit-transform: rotate(0deg);left:500px;}
+                55% {-webkit-transform: rotate(0deg);left:500px;}
+                70% {-webkit-transform: rotate(0deg);left:500px;background:#1ec7e6;}
+                100% {-webkit-transform: rotate(-360deg);left:0px;}
+            }
+
+                @-moz-keyframes animated_div
+            {
+                0%  {-moz-transform: rotate(0deg);left:0px;}
+                25% {-moz-transform: rotate(20deg);left:0px;}
+                50%  {-moz-transform: rotate(0deg);left:500px;}
+                55%  {-moz-transform: rotate(0deg);left:500px;}
+                70%  {-moz-transform: rotate(0deg);left:500px;background:#1ec7e6;}
+                100% {-moz-transform: rotate(-360deg);left:0px;}
+            }
+
+                @-o-keyframes animated_div
+            {
+                0% {transform: rotate(0deg);left:0px;}
+                25% {transform: rotate(20deg);left:0px;}
+                50%  {transform: rotate(0deg);left:500px;}
+                55%  {transform: rotate(0deg);left:500px;}
+                70%  {transform: rotate(0deg);left:500px;background:#1ec7e6;}
+                100% {transform: rotate(-360deg);left:0px;}
+            }
+
+        </style>
+    </head>
+    <body>
+        <h2>This is just a demo page picked up from w3schools, you can do a lot more than this</h2>
+        <hr>
+        <div id="content">
+            <h3>CSS Animations</h3>
+            <p>CSS animations allows animation of most HTML elements without using JavaScript or Flash !</p>
+            <div id="animated_div">CSS</div>
+            <h3>What are CSS Animations ?</h3>
+            <p>An animation lets an element gradually change from one style to another</p>
+            <p>You can change as many CSS properties you want, as many times you want</p>
+            <p>To use CSS animation, you must first specify some keyframes for the animation</p>
+            <p>Keyframes hold what styles the element will have at certain times</p>
+            <br>
+            <h3>The @keyframes Rule</h3>
+            <p>When you specify CSS inside the <code>@keyframes</code> rule, the animation will gradually change from  urrent style to the new style at certain times.</p>
+            <p>To get an animation to work, you must bind the animation to an element.</p>
+            <p>The following example binds the "example" animation to the <code>&#x227A;div&#x227B;</code> element. The animation will last for 4 seconds, and it will gradually change the background-color of the <code>&#x227A;div&#x227B;</code> element from "red" to "yellow":</p>
+            <br>
+            <h5>Code :</h5>
+            <pre>
+            <code class="css">
+    /* The animation code */
+    @keyframes example {
+        from {background-color: red;}
+        to {background-color: yellow;}
+    }
+
+    /* The element to apply the animation to */
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        animation-name: example;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+    } 
+            </code>
+            </pre>
+            <h5>Demo : </h5>
+            <div id="demo_1"></div>
+            <br>
+            <b>Note :</b>The <code>animation-duration</code> property defines how long time an animation should take to complete. If the <code>animation-duration</code> property is not specified, no animation will occur, because the default value is 0s(0 seconds).
+            <br>
+            In the example above we have specified when the style will change using the keywords "from" and "to" (which represents 0% (start) and 100%(complete))<br>
+            It is also possible to use percent. By using percent, you can add as many style changes as you like.
+            The following example will change <code>background-color</code> of the <code>&#x227A;div&#x227B;</code> element when the animation is 25% complete, 50% complete and again when the animation is 100% complete.
+            <br>
+            <h5>Code :</h5>
+            <pre>
+            <code class="css">
+    /* The animation code */
+    @keyframes example {
+        0%   {background-color: red;}
+        25%  {background-color: yellow;}
+        50%  {background-color: blue;}
+        100% {background-color: green;}
+    }
+    
+    /* The element to apply the animation to */
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        animation-name: example;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+    } 
+            </code>
+            </pre>
+            <h5>Demo :</h5>
+            <div id="demo_2"></div>
+        </div>
+    </body>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</html>
