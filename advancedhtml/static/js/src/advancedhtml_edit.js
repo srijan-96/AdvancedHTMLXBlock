@@ -46,8 +46,6 @@ function AdvancedHTMLXBlock_EditorInit(runtime, element, data) {
         }
         var live_preview_value;
         var live_preview_option = document.getElementById("live_preview_option");
-        console.log(live_preview_option.selectedIndex);
-        console.log(live_preview_option.value);
         if(live_preview_option.value === "enable") {
             live_preview_value = true;
         }
