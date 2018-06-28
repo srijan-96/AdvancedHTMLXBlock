@@ -33,7 +33,6 @@ Since the docker based devstack has 2 separate containers for studio and lms, yo
 7. `$ make studio-restart && make lms-restart`
 
 
-
 ### Introduction :
 OpenEdx's current HTML component does not allow you add internal and/or external CSS(via \<link\>), also the raw HTML editor does nt save your indentation and shows a dirty minified coe.
 Even if you add <style> tag in OpenEdx html component and try to theme basic elements, the CSS will spill all over the page as shown [here](https://imgur.com/a/v1imOMd)
@@ -49,3 +48,6 @@ The height of the iframe is chanegd on changing html content and iframe is style
 ###### Note:
 It is required that your html and body tags have fixed height at the time of rendering. If they don't, you may see a weird scrollbar on left side of iframe. If you want to avoid it, have a fixed height for html and body.
 In case you have an animation like [this](https://www.w3schools.com/css/tryit.asp?filename=trycss3_animation_count2) where the height changes as the animation progresses, wrap the entire animation into a div capable of holding the maximum height change so that body will have fixed height
+
+#### Regarding hyperlinks in iframe :
+Xblock does not open hyperlinks in same tab, it adds `target = "_blank";` to every hyperlink on initialization which automatically opens all links in new tabs
