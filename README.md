@@ -9,7 +9,7 @@ Advanced HTML XBlock for OpenEdx(https://github.com/edx) [Beta]
 - Autocomplete Brackets
 
 ### Demo :
-    See the demo video [here](https://drive.google.com/drive/folders/1yaAQgo-hzBYOtIq-QLDFwfoWlL87fVNv)
+   See the demo video [here](https://drive.google.com/drive/folders/1yaAQgo-hzBYOtIq-QLDFwfoWlL87fVNv)
 
 ### Installation :
 1. Clone this repository on your machine. Testing this first on devstack is always recommended
