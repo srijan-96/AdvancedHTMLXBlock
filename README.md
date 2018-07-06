@@ -54,3 +54,9 @@ In case you have an animation like [this](https://www.w3schools.com/css/tryit.as
 
 #### Regarding hyperlinks in iframe :
 Xblock does not open hyperlinks in same tab, it adds `target = "_blank";` to every hyperlink on initialization which automatically opens all links in new tabs
+
+#### A small note :
+Currently, there is no title given to iframes in LMS/ It is recommended to add the title to iframes for accessibiliy purposes, we are aware of this and the title will simply be display_name of xblock. This will be added in next release
+
+As mentioned [here](https://stackoverflow.com/questions/21119424/how-to-change-the-title-of-an-iframe-dynamically), javascript can be used to change the title of iframe.
+We are planning to do the same. We'll pass `display_name` along with htmlconent in student view and use javascript to set the title of iframe
