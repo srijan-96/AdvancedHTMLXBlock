@@ -60,3 +60,7 @@ Currently, there is no title given to iframes in LMS/ It is recommended to add t
 
 As mentioned [here](https://stackoverflow.com/questions/21119424/how-to-change-the-title-of-an-iframe-dynamically), javascript can be used to change the title of iframe.
 We are planning to do the same. We'll pass `display_name` along with htmlconent in student view and use javascript to set the title of iframe
+
+
+### Contributors :
+Ashutosh Sathe, Pravallika Podugu
